@@ -1,0 +1,11 @@
+# Single MSISDN (original behavior)
+python main.py --msisdn 1234567890
+
+# Small batch (parallel processing)
+python main.py --msisdn-file msisdns_small.txt --threads 5
+
+# Large batch (optimized processing)
+python main.py --msisdn-file msisdns_large.txt --batch-size 2000 --threads 10
+
+# Debug mode
+python main.py --msisdn-file msisdns.txt --debug --verbose

@@ -1,0 +1,491 @@
+{
+  "metadata": {
+    "version": "1.9",
+    "description": "CSV Exporter with Device Children Extraction",
+    "last_updated": "2025-01-13"
+  },
+
+  "export_queries": {
+    "main_asset_data": {
+      "enabled": true,
+      "description": "Main asset data for MSISDN",
+      "from_table": "Asset",
+      "fields": [
+        "Id",
+        "PR_MSISDN__c",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode", 
+        "Product2.vlocity_cmt__ParentClassCode__c",
+        "Product2.Family",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "vlocity_cmt__OneTimeCharge__c",
+        "vlocity_cmt__RecurringCharge__c",
+        "vlocity_cmt__UsageUnitCost__c",
+        "vlocity_cmt__RootItemId__c",
+        "vlocity_cmt__AssetReferenceId__c",
+        "CB_Subscription_Id__c",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__BillingAccountId__r.Segment__c",
+        "vlocity_cmt__BillingAccountId__r.vlocity_cmt__AccountPaymentType__c",
+        "vlocity_cmt__BillingAccountId__r.PR_Mobile_Billing_Number__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "vlocity_cmt__OrderId__r.Type",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "PR_MSISDN__c = '{msisdn}'",
+        "Product2.vlocity_cmt__ParentClassCode__c = 'PR_B2C_Mobile_Line_Class'",
+        "vlocity_cmt__ProvisioningStatus__c != 'Deleted'"
+      ],
+      "order_by": "CreatedDate DESC",
+      "limit": 1
+    },
+
+    "sim_card_details": {
+      "enabled": false,
+      "description": "SIM card attributes to extract - DISABLED, using specific_line_children instead",
+      "from_table": "Asset", 
+      "fields": [
+        "Id",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode",
+        "Product2.Family",
+        "PR_ICCID__c",
+        "PRB2C_IMSI__c",
+        "SerialNumber",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "vlocity_cmt__RootItemId__c = '{root_item_id}'",
+        "Product2.Name = 'SIM Card'"
+      ],
+      "limit": 1
+    },
+
+    "device_details": {
+      "enabled": true,
+      "description": "Device information",
+      "from_table": "Asset",
+      "fields": [
+        "Id",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode",
+        "Product2.Family",
+        "PR_Generic_Reporting_String__c",
+        "Contract_Term__c",
+        "PRB2C_Installment_ID__c",
+        "SerialNumber",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "External_Asset_Reference_Id__c = '{asset_reference_id}'",
+        "vlocity_cmt__ProvisioningStatus__c != 'Deleted'"
+        
+      ],
+      "limit": 1
+    },
+
+    "device_children": {
+      "enabled": true,
+      "description": "All child assets of the main device",
+      "from_table": "Asset",
+      "fields": [
+        "Id",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode",
+        "Product2.Family",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "SerialNumber",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__OneTimeCharge__c",
+        "vlocity_cmt__RecurringCharge__c",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "vlocity_cmt__RootItemId__c = '{device_asset_id}'",
+        "vlocity_cmt__ProvisioningStatus__c != 'Deleted'"
+      ],
+      "order_by": "CreatedDate DESC"
+    },
+
+    "specific_device_children": {
+      "enabled": true,
+      "description": "Specific device accessories and components",
+      "from_table": "Asset",
+      "fields": [
+        "Id",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode",
+        "Product2.Family",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "SerialNumber",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__OneTimeCharge__c",
+        "vlocity_cmt__RecurringCharge__c",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "vlocity_cmt__RootItemId__c = '{device_asset_id}'",
+        "Product2.Name IN ('Device Protection','Quick Upgrade Pro')",
+        "vlocity_cmt__ProvisioningStatus__c != 'Deleted'"
+      ],
+      "order_by": "CreatedDate DESC"
+    },
+
+    "specific_line_children": {
+      "enabled": true,
+      "description": "Specific line children we want to extract from",
+      "from_table": "Asset",
+      "fields": [
+        "Id",
+        "Name",
+        "Product2.Name",
+        "Product2.ProductCode",
+        "Product2.Family",
+        "Product2.vlocity_cmt__ParentClassCode__c",
+        "vlocity_cmt__ProvisioningStatus__c",
+        "vlocity_cmt__OneTimeCharge__c",
+        "vlocity_cmt__RecurringCharge__c",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__JSONAttribute__c",
+        "CB_Subscription_Id__c",
+        "PR_ICCID__c",
+        "PRB2C_IMSI__c",
+        "SerialNumber",
+        "vlocity_cmt__OrderId__r.OrderNumber",
+        "CreatedDate"
+      ],
+      "where_conditions": [
+        "vlocity_cmt__RootItemId__c = '{root_item_id}'",
+        "vlocity_cmt__ProvisioningStatus__c != 'Deleted'"
+      ],
+      "order_by": "CreatedDate DESC"
+    },
+
+    "recent_orders": {
+      "enabled": true,
+      "description": "Recent order history",
+      "from_table": "OrderItem",
+      "fields": [
+        "Id",
+        "Order.Id",
+        "Order.OrderNumber",
+        "Order.Type",
+        "Order.vlocity_cmt__Reason__c",
+        "Order.vlocity_cmt__OrderStatus__c",
+        "Order.CreatedDate",
+        "vlocity_cmt__Product2Id__r.Name",
+        "vlocity_cmt__Product2Id__r.ProductCode",
+        "vlocity_cmt__Product2Id__r.Family",
+        "PR_Original_OLI_ID__c",
+        "vlocity_cmt__OneTimeCharge__c",
+        "vlocity_cmt__RecurringCharge__c"
+      ],
+      "where_conditions": [
+        "PR_MSISDN__c = '{msisdn}'",
+        "CreatedDate >= LAST_N_DAYS:30"
+      ],
+      "order_by": "CreatedDate DESC",
+      "limit": 3
+    }
+  },
+
+  "json_attribute_extraction": {
+    "enabled": true,
+    "json_field": "vlocity_cmt__JSONAttribute__c",
+    "auto_detect_attribute_array": true,
+    "attributes": [
+      {
+        "attributeuniquecode__c": "PRB2C_ATT_Mobile_SIM_Card_Type",
+        "csv_column": "SIM_Card_Type",
+        "description": "SIM Card Type (Physical/eSIM)",
+        "asset_types": ["specific_line_children"],
+        "product_filter": "SIM Card",
+        "required": true,
+        "extraction_priority": 1
+      },
+           {
+        "attributeuniquecode__c": "SOC_Code",
+        "csv_column": "SOC Code",
+        "description": "Insurance SOC Code",
+        "asset_types": ["device_children", "specific_device_children"],
+        "product_filter": "Device Protection", 
+        "required": false,
+        "extraction_priority": 2
+      },
+      {
+        "attributeuniquecode__c": "PR_B2C_Mb_ATT_Policy_Type",
+        "csv_column": "Insurance Policy Type",
+        "description": "Insurance Policy Type",
+        "asset_types": ["device_children", "specific_device_children"],
+        "product_filter": "Device Protection",
+        "required": false,
+        "extraction_priority": 3
+      },
+         {
+        "attributeuniquecode__c": "ATT_IMSI",
+        "csv_column": "IMSI",
+        "description": "IMSI",
+        "asset_types": ["specific_line_children"],
+        "product_filter": "SIM Card",
+        "required": true,
+        "extraction_priority": 4
+      },
+          {
+        "attributeuniquecode__c": "PR_B2C_Mb_ATT_ICCID",
+        "csv_column": "ICCID",
+        "description": "ICCID",
+        "asset_types": ["specific_line_children"],
+        "product_filter": "SIM Card",
+        "required": true,
+        "extraction_priority": 4
+      }
+    ]
+  },
+
+  "field_extraction": {
+    "enabled": true,
+    "extraction_rules": [
+      {
+        "asset_type": "specific_line_children",
+        "product_filter": "SIM Card",
+        "fields": [
+          {
+            "source_field": "SerialNumber",
+            "csv_column": "SIM_Serial_Number",
+            "required": false
+          }
+        ]
+      },
+      {
+        "asset_type": "device_details",
+        "fields": [
+          {
+            "source_field": "PR_Generic_Reporting_String__c",
+            "csv_column": "Device_Reporting_String",
+            "required": true
+          },
+          {
+            "source_field": "Contract_Term__c",
+            "csv_column": "Device_Contract_Term",
+            "required": false
+          }
+        ]
+      },
+      {
+        "asset_type": "device_children",
+        "product_filter": "Charger",
+        "fields": [
+          {
+            "source_field": "SerialNumber",
+            "csv_column": "Charger_Serial_Number",
+            "required": false
+          },
+          {
+            "source_field": "Product2.Name",
+            "csv_column": "Charger_Type",
+            "required": false
+          }
+        ]
+      },
+      {
+        "asset_type": "device_children",
+        "product_filter": "Case",
+        "fields": [
+          {
+            "source_field": "SerialNumber",
+            "csv_column": "Case_Serial_Number",
+            "required": false
+          },
+          {
+            "source_field": "Product2.Name",
+            "csv_column": "Case_Type",
+            "required": false
+          }
+        ]
+      },
+
+{
+        "asset_type": "device_children",
+      "product_filter": "Device Protection",
+       "fields": [
+        {
+          "source_field": "vlocity_cmt__RecurringCharge__c",
+          "csv_column": "Insurance_Monthly_Cost",
+          "required": false
+        },
+        {
+          "source_field": "PR_Original_OLI_ID__c",
+          "csv_column": "Insurance_OLI_ID",
+          "required": false
+        }
+      ]
+      },
+
+      {
+        "asset_type": "device_children",
+      "product_filter": "Quick Upgrade Pro",
+       "fields": [
+        {
+          "source_field": "vlocity_cmt__RecurringCharge__c",
+          "csv_column": "Quick_Upgrade_Cost",
+          "required": false
+        },
+        {
+          "source_field": "PR_Original_OLI_ID__c",
+          "csv_column": "Quick_Upgrade_OLI_ID",
+          "required": false
+        }
+      ]
+      },
+
+      {
+        "asset_type": "specific_line_children",
+        "product_filter": "Liberty International Passport",
+        "fields": [
+     
+          {
+            "source_field": "vlocity_cmt__OneTimeCharge__c",
+            "csv_column": "Data_Addon_Cost",
+            "required": false
+          },
+          {
+            "source_field": "vlocity_cmt__RecurringCharge__c",
+            "csv_column": "Plan_Recurring_Charge",
+            "required": false
+          }
+        ]
+      }
+    
+    ]
+  },
+
+  "csv_mapping": {
+    "output_file": "msisdn_export.csv",
+    "fields": [
+      {
+        "csv_column": "MSISDN",
+        "source": "main_asset_data.PR_MSISDN__c"
+      },
+          {
+      "csv_column": "Billing_Account_Segment",
+      "source": "main_asset_data.vlocity_cmt__BillingAccountId__r.Segment__c"
+    },
+    {
+      "csv_column": "Billing_Account_Payment_Type",
+      "source": "main_asset_data.vlocity_cmt__BillingAccountId__r.vlocity_cmt__AccountPaymentType__c"
+    },
+
+      {
+      "csv_column": "BAN CAN",
+      "source": "main_asset_data.vlocity_cmt__BillingAccountId__r.PR_Mobile_Billing_Number__c"
+    },
+      {
+        "csv_column": "Line_Product_Name", 
+        "source": "main_asset_data.Product2.Name"
+      },
+      {
+        "csv_column": "Line_Product_Code",
+        "source": "main_asset_data.Product2.ProductCode"
+      },
+      {
+        "csv_column": "Line_Status",
+        "source": "main_asset_data.vlocity_cmt__ProvisioningStatus__c"
+      },
+      {
+        "csv_column": "Line_Original_OLI_ID",
+        "source": "main_asset_data.PR_Original_OLI_ID__c"
+      },
+
+        {
+      "csv_column": "Usage_Unit_Cost",
+      "source": "main_asset_data.vlocity_cmt__UsageUnitCost__c"
+    },
+      {
+        "csv_column": "SIM_Card_Type",
+        "source": "json_attributes.SIM_Card_Type"
+      },
+      {
+        "csv_column": "IMSI",
+        "source": "json_attributes.IMSI"
+      },
+      {
+        "csv_column": "ICCID",
+        "source": "json_attributes.ICCID"
+      },
+      {
+        "csv_column": "SIM_Serial_Number",
+        "source": "field_extraction.specific_line_children.SIM_Serial_Number"
+      },
+
+      {
+        "csv_column": "Device_Reporting_String",
+        "source": "field_extraction.device_details.Device_Reporting_String"
+      },
+      {
+        "csv_column": "Device_Contract_Term",
+        "source": "field_extraction.device_details.Device_Contract_Term"
+      },
+
+      {
+        "csv_column": "Data_Addon_Cost",
+        "source": "field_extraction.specific_line_children.Data_Addon_Cost"
+      },
+ 
+
+
+     {
+      "csv_column": "SOC Code",
+      "source": "json_attributes.SOC_Code"
+    },
+    {
+      "csv_column": "Insurance Policy Type", 
+      "source": "json_attributes.Insurance_Policy_Type"
+    },
+ 
+    {
+      "csv_column": "Insurance_Monthly_Cost",
+      "source": "field_extraction.device_children.Insurance_Monthly_Cost"
+    },
+    {
+      "csv_column": "Insurance_OLI_ID",
+      "source": "field_extraction.device_children.Insurance_OLI_ID"
+    },
+    {
+      "csv_column": "Quick_Upgrade_Cost",
+      "source": "field_extraction.device_children.Quick_Upgrade_Cost"
+    },
+    {
+      "csv_column": "Quick_Upgrade_OLI_ID",
+      "source": "field_extraction.device_children.Quick_Upgrade_OLI_ID"
+    },
+         {
+        "csv_column": "Recent_Order_Type",
+        "source": "recent_orders.0.Order.Type"
+      },
+      {
+        "csv_column": "Recent_Order_Reason", 
+        "source": "recent_orders.0.Order.vlocity_cmt__Reason__c"
+      }
+
+    ]
+  }
+}

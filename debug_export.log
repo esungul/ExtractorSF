@@ -1,0 +1,126 @@
+2025-11-14 21:08:35,906 - config_loader - INFO - ✓ Configuration loaded from config.json
+2025-11-14 21:08:35,907 - csv_exporter - INFO - Fetching data for MSISDN: 13402440785
+2025-11-14 21:08:35,907 - csv_exporter - INFO - Executing 6 enabled queries: ['main_asset_data', 'device_details', 'device_children', 'specific_device_children', 'specific_line_children', 'recent_orders']
+2025-11-14 21:08:35,907 - csv_exporter - INFO - Step 1: Getting main asset data...
+2025-11-14 21:08:35,907 - csv_exporter - INFO - Executing: main_asset_data
+2025-11-14 21:08:35,907 - csv_exporter - DEBUG - SOQL: SELECT Id, PR_MSISDN__c, Name, Product2.Name, Product2.ProductCode, Product2.vlocity_cmt__ParentClassCode__c, Product2.Family, vlocity_cmt__ProvisioningStatus__c, vlocity_cmt__OneTimeCharge__c, vlocity_cmt__RecurringCharge__c, vlocity_cmt__UsageUnitCost__c, vlocity_cmt__RootItemId__c, vlocity_cmt__AssetReferenceId__c, CB_Subscription_Id__c, PR_Original_OLI_ID__c, vlocity_cmt__BillingAccountId__r.Segment__c, vlocity_cmt__BillingAccountId__r.vlocity_cmt__AccountPaymentType__c, vlocity_cmt__BillingAccountId__r.PR_Mobile_Billing_Number__c, vlocity_cmt__JSONAttribute__c, vlocity_cmt__OrderId__r.OrderNumber, vlocity_cmt__OrderId__r.Type, CreatedDate FROM Asset WHERE PR_MSISDN__c = '13402440785' AND Product2.vlocity_cmt__ParentClassCode__c = 'PR_B2C_Mobile_Line_Class' AND vlocity_cmt__ProvisioningStatus__c != 'Deleted' ORDER BY CreatedDate DESC LIMIT 1
+2025-11-14 21:08:40,832 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): login.salesforce.com:443
+2025-11-14 21:08:41,262 - urllib3.connectionpool - DEBUG - https://login.salesforce.com:443 "POST /services/Soap/u/57.0 HTTP/1.1" 200 806
+2025-11-14 21:08:41,283 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): cwc.my.salesforce.com:443
+2025-11-14 21:08:41,982 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Name+FROM+User+LIMIT+1 HTTP/1.1" 200 None
+2025-11-14 21:08:42,454 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+PR_MSISDN__c%2C+Name%2C+Product2.Name%2C+Product2.ProductCode%2C+Product2.vlocity_cmt__ParentClassCode__c%2C+Product2.Family%2C+vlocity_cmt__ProvisioningStatus__c%2C+vlocity_cmt__OneTimeCharge__c%2C+vlocity_cmt__RecurringCharge__c%2C+vlocity_cmt__UsageUnitCost__c%2C+vlocity_cmt__RootItemId__c%2C+vlocity_cmt__AssetReferenceId__c%2C+CB_Subscription_Id__c%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__BillingAccountId__r.Segment__c%2C+vlocity_cmt__BillingAccountId__r.vlocity_cmt__AccountPaymentType__c%2C+vlocity_cmt__BillingAccountId__r.PR_Mobile_Billing_Number__c%2C+vlocity_cmt__JSONAttribute__c%2C+vlocity_cmt__OrderId__r.OrderNumber%2C+vlocity_cmt__OrderId__r.Type%2C+CreatedDate+FROM+Asset+WHERE+PR_MSISDN__c+%3D+%2713402440785%27+AND+Product2.vlocity_cmt__ParentClassCode__c+%3D+%27PR_B2C_Mobile_Line_Class%27+AND+vlocity_cmt__ProvisioningStatus__c+%21%3D+%27Deleted%27+ORDER+BY+CreatedDate+DESC+LIMIT+1 HTTP/1.1" 200 None
+2025-11-14 21:08:42,457 - csv_exporter - INFO - Found 1 records
+2025-11-14 21:08:42,458 - csv_exporter - INFO - Root Item ID: 02iPl000009iT9BIAU
+2025-11-14 21:08:42,458 - csv_exporter - INFO - Asset Reference ID: 5eb76a3d-567a-4836-abf8-a6bb668e1242
+2025-11-14 21:08:42,458 - csv_exporter - INFO - Step 2: Getting device details...
+2025-11-14 21:08:42,458 - csv_exporter - INFO - Executing: device_details
+2025-11-14 21:08:42,458 - csv_exporter - DEBUG - SOQL: SELECT Id, Name, Product2.Name, Product2.ProductCode, Product2.Family, PR_Generic_Reporting_String__c, Contract_Term__c, PRB2C_Installment_ID__c, SerialNumber, vlocity_cmt__ProvisioningStatus__c, PR_Original_OLI_ID__c, vlocity_cmt__JSONAttribute__c, vlocity_cmt__OrderId__r.OrderNumber, CreatedDate FROM Asset WHERE External_Asset_Reference_Id__c = '5eb76a3d-567a-4836-abf8-a6bb668e1242' AND vlocity_cmt__ProvisioningStatus__c != 'Deleted' LIMIT 1
+2025-11-14 21:08:42,823 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Name%2C+Product2.Name%2C+Product2.ProductCode%2C+Product2.Family%2C+PR_Generic_Reporting_String__c%2C+Contract_Term__c%2C+PRB2C_Installment_ID__c%2C+SerialNumber%2C+vlocity_cmt__ProvisioningStatus__c%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__JSONAttribute__c%2C+vlocity_cmt__OrderId__r.OrderNumber%2C+CreatedDate+FROM+Asset+WHERE+External_Asset_Reference_Id__c+%3D+%275eb76a3d-567a-4836-abf8-a6bb668e1242%27+AND+vlocity_cmt__ProvisioningStatus__c+%21%3D+%27Deleted%27+LIMIT+1 HTTP/1.1" 200 None
+2025-11-14 21:08:42,826 - csv_exporter - INFO - Found 1 records
+2025-11-14 21:08:42,826 - csv_exporter - INFO - Device Asset ID: 02iPl00000BiRsbIAF
+2025-11-14 21:08:42,826 - csv_exporter - INFO - Step 3: Getting device children...
+2025-11-14 21:08:42,826 - csv_exporter - INFO - Executing: device_children
+2025-11-14 21:08:42,826 - csv_exporter - DEBUG - SOQL: SELECT Id, Name, Product2.Name, Product2.ProductCode, Product2.Family, vlocity_cmt__ProvisioningStatus__c, vlocity_cmt__JSONAttribute__c, SerialNumber, PR_Original_OLI_ID__c, vlocity_cmt__OneTimeCharge__c, vlocity_cmt__RecurringCharge__c, vlocity_cmt__OrderId__r.OrderNumber, CreatedDate FROM Asset WHERE vlocity_cmt__RootItemId__c = '02iPl00000BiRsbIAF' AND vlocity_cmt__ProvisioningStatus__c != 'Deleted' ORDER BY CreatedDate DESC
+2025-11-14 21:08:43,189 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Name%2C+Product2.Name%2C+Product2.ProductCode%2C+Product2.Family%2C+vlocity_cmt__ProvisioningStatus__c%2C+vlocity_cmt__JSONAttribute__c%2C+SerialNumber%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__OneTimeCharge__c%2C+vlocity_cmt__RecurringCharge__c%2C+vlocity_cmt__OrderId__r.OrderNumber%2C+CreatedDate+FROM+Asset+WHERE+vlocity_cmt__RootItemId__c+%3D+%2702iPl00000BiRsbIAF%27+AND+vlocity_cmt__ProvisioningStatus__c+%21%3D+%27Deleted%27+ORDER+BY+CreatedDate+DESC HTTP/1.1" 200 None
+2025-11-14 21:08:43,191 - csv_exporter - INFO - Found 4 records
+2025-11-14 21:08:43,192 - csv_exporter - INFO - Found 4 device children
+2025-11-14 21:08:43,192 - csv_exporter - INFO - Step 4: Getting specific device children...
+2025-11-14 21:08:43,192 - csv_exporter - INFO - Executing: specific_device_children
+2025-11-14 21:08:43,192 - csv_exporter - DEBUG - SOQL: SELECT Id, Name, Product2.Name, Product2.ProductCode, Product2.Family, vlocity_cmt__ProvisioningStatus__c, vlocity_cmt__JSONAttribute__c, SerialNumber, PR_Original_OLI_ID__c, vlocity_cmt__OneTimeCharge__c, vlocity_cmt__RecurringCharge__c, vlocity_cmt__OrderId__r.OrderNumber, CreatedDate FROM Asset WHERE vlocity_cmt__RootItemId__c = '02iPl00000BiRsbIAF' AND Product2.Name IN ('Device Protection','Quick Upgrade Pro') AND vlocity_cmt__ProvisioningStatus__c != 'Deleted' ORDER BY CreatedDate DESC
+2025-11-14 21:08:43,541 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Name%2C+Product2.Name%2C+Product2.ProductCode%2C+Product2.Family%2C+vlocity_cmt__ProvisioningStatus__c%2C+vlocity_cmt__JSONAttribute__c%2C+SerialNumber%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__OneTimeCharge__c%2C+vlocity_cmt__RecurringCharge__c%2C+vlocity_cmt__OrderId__r.OrderNumber%2C+CreatedDate+FROM+Asset+WHERE+vlocity_cmt__RootItemId__c+%3D+%2702iPl00000BiRsbIAF%27+AND+Product2.Name+IN+%28%27Device+Protection%27%2C%27Quick+Upgrade+Pro%27%29+AND+vlocity_cmt__ProvisioningStatus__c+%21%3D+%27Deleted%27+ORDER+BY+CreatedDate+DESC HTTP/1.1" 200 None
+2025-11-14 21:08:43,542 - csv_exporter - INFO - Found 2 records
+2025-11-14 21:08:43,542 - csv_exporter - INFO - Found 2 specific device children
+2025-11-14 21:08:43,542 - csv_exporter - INFO - Step 5: Getting specific line children...
+2025-11-14 21:08:43,542 - csv_exporter - INFO - Executing: specific_line_children
+2025-11-14 21:08:43,542 - csv_exporter - DEBUG - SOQL: SELECT Id, Name, Product2.Name, Product2.ProductCode, Product2.Family, Product2.vlocity_cmt__ParentClassCode__c, vlocity_cmt__ProvisioningStatus__c, vlocity_cmt__OneTimeCharge__c, vlocity_cmt__RecurringCharge__c, PR_Original_OLI_ID__c, vlocity_cmt__JSONAttribute__c, CB_Subscription_Id__c, PR_ICCID__c, PRB2C_IMSI__c, SerialNumber, vlocity_cmt__OrderId__r.OrderNumber, CreatedDate FROM Asset WHERE vlocity_cmt__RootItemId__c = '02iPl000009iT9BIAU' AND vlocity_cmt__ProvisioningStatus__c != 'Deleted' ORDER BY CreatedDate DESC
+2025-11-14 21:08:43,991 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Name%2C+Product2.Name%2C+Product2.ProductCode%2C+Product2.Family%2C+Product2.vlocity_cmt__ParentClassCode__c%2C+vlocity_cmt__ProvisioningStatus__c%2C+vlocity_cmt__OneTimeCharge__c%2C+vlocity_cmt__RecurringCharge__c%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__JSONAttribute__c%2C+CB_Subscription_Id__c%2C+PR_ICCID__c%2C+PRB2C_IMSI__c%2C+SerialNumber%2C+vlocity_cmt__OrderId__r.OrderNumber%2C+CreatedDate+FROM+Asset+WHERE+vlocity_cmt__RootItemId__c+%3D+%2702iPl000009iT9BIAU%27+AND+vlocity_cmt__ProvisioningStatus__c+%21%3D+%27Deleted%27+ORDER+BY+CreatedDate+DESC HTTP/1.1" 200 None
+2025-11-14 21:08:43,994 - csv_exporter - INFO - Found 6 records
+2025-11-14 21:08:43,994 - csv_exporter - INFO - Step 6: Getting recent orders...
+2025-11-14 21:08:43,994 - csv_exporter - INFO - Executing: recent_orders
+2025-11-14 21:08:43,994 - csv_exporter - DEBUG - SOQL: SELECT Id, Order.Id, Order.OrderNumber, Order.Type, Order.vlocity_cmt__Reason__c, Order.vlocity_cmt__OrderStatus__c, Order.CreatedDate, vlocity_cmt__Product2Id__r.Name, vlocity_cmt__Product2Id__r.ProductCode, vlocity_cmt__Product2Id__r.Family, PR_Original_OLI_ID__c, vlocity_cmt__OneTimeCharge__c, vlocity_cmt__RecurringCharge__c FROM OrderItem WHERE PR_MSISDN__c = '13402440785' AND CreatedDate >= LAST_N_DAYS:30 ORDER BY CreatedDate DESC LIMIT 3
+2025-11-14 21:08:44,501 - urllib3.connectionpool - DEBUG - https://cwc.my.salesforce.com:443 "GET /services/data/v57.0/query/?q=SELECT+Id%2C+Order.Id%2C+Order.OrderNumber%2C+Order.Type%2C+Order.vlocity_cmt__Reason__c%2C+Order.vlocity_cmt__OrderStatus__c%2C+Order.CreatedDate%2C+vlocity_cmt__Product2Id__r.Name%2C+vlocity_cmt__Product2Id__r.ProductCode%2C+vlocity_cmt__Product2Id__r.Family%2C+PR_Original_OLI_ID__c%2C+vlocity_cmt__OneTimeCharge__c%2C+vlocity_cmt__RecurringCharge__c+FROM+OrderItem+WHERE+PR_MSISDN__c+%3D+%2713402440785%27+AND+CreatedDate+%3E%3D+LAST_N_DAYS%3A30+ORDER+BY+CreatedDate+DESC+LIMIT+3 HTTP/1.1" 200 None
+2025-11-14 21:08:44,502 - csv_exporter - INFO - Found 2 records
+2025-11-14 21:08:44,502 - csv_exporter - INFO - ✓ All enabled queries completed successfully
+2025-11-14 21:08:44,503 - csv_exporter - INFO - 🔍 Starting simple JSON attribute extraction...
+2025-11-14 21:08:44,503 - csv_exporter - INFO - Looking for JSON field: vlocity_cmt__JSONAttribute__c
+2025-11-14 21:08:44,503 - csv_exporter - INFO - Configured to extract 5 attributes
+2025-11-14 21:08:44,503 - csv_exporter - INFO - Processing attribute: PRB2C_ATT_Mobile_SIM_Card_Type -> SIM_Card_Type
+2025-11-14 21:08:44,503 - csv_exporter - INFO - Targeting asset types: ['specific_line_children']
+2025-11-14 21:08:44,503 - csv_exporter - INFO - Product filter: SIM Card
+2025-11-14 21:08:44,503 - csv_exporter - DEBUG - ✅ Found data for asset type: specific_line_children
+2025-11-14 21:08:44,503 - csv_exporter - DEBUG - === EXTRACTING ATTRIBUTE PRB2C_ATT_Mobile_SIM_Card_Type USING PROVEN APPROACH ===
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - ✅ Successfully parsed JSON
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - 📊 Top-level keys: ['ATT_CAT_SIM_CARD', 'ATT_CAT_PRB2C_Mobile', 'ATT_CAT_Tech_ATTR', 'SMD-001']
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_SIM_CARD
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_PRB2C_Mobile
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - ✅ Found attribute PRB2C_ATT_Mobile_SIM_Card_Type in category ATT_CAT_PRB2C_Mobile
+2025-11-14 21:08:44,504 - csv_exporter - DEBUG - ✅ Extracted from selectedItem.value: Physical
+2025-11-14 21:08:44,504 - csv_exporter - INFO - ✅ Successfully extracted PRB2C_ATT_Mobile_SIM_Card_Type from specific_line_children[1]: Physical
+2025-11-14 21:08:44,505 - csv_exporter - INFO - Processing attribute: SOC_Code -> SOC Code
+2025-11-14 21:08:44,505 - csv_exporter - INFO - Targeting asset types: ['device_children', 'specific_device_children']
+2025-11-14 21:08:44,505 - csv_exporter - INFO - Product filter: Device Protection
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - ✅ Found data for asset type: device_children
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - === EXTRACTING ATTRIBUTE SOC_Code USING PROVEN APPROACH ===
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - ✅ Successfully parsed JSON
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - 📊 Top-level keys: ['ATT_CAT_PRB2C_Mobile_Device', 'ATT_CAT_PRB2C_Mobile', 'ATT_CAT_Tech_ATTR']
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_PRB2C_Mobile_Device
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - ✅ Found attribute SOC_Code in category ATT_CAT_PRB2C_Mobile_Device
+2025-11-14 21:08:44,505 - csv_exporter - DEBUG - ✅ Extracted from runtimeInfo.value: LPA1TIERS
+2025-11-14 21:08:44,506 - csv_exporter - INFO - ✅ Successfully extracted SOC_Code from device_children[2]: LPA1TIERS
+2025-11-14 21:08:44,506 - csv_exporter - INFO - Processing attribute: PR_B2C_Mb_ATT_Policy_Type -> Insurance Policy Type
+2025-11-14 21:08:44,506 - csv_exporter - INFO - Targeting asset types: ['device_children', 'specific_device_children']
+2025-11-14 21:08:44,506 - csv_exporter - INFO - Product filter: Device Protection
+2025-11-14 21:08:44,506 - csv_exporter - DEBUG - ✅ Found data for asset type: device_children
+2025-11-14 21:08:44,506 - csv_exporter - DEBUG - === EXTRACTING ATTRIBUTE PR_B2C_Mb_ATT_Policy_Type USING PROVEN APPROACH ===
+2025-11-14 21:08:44,506 - csv_exporter - DEBUG - ✅ Successfully parsed JSON
+2025-11-14 21:08:44,506 - csv_exporter - DEBUG - 📊 Top-level keys: ['ATT_CAT_PRB2C_Mobile_Device', 'ATT_CAT_PRB2C_Mobile', 'ATT_CAT_Tech_ATTR']
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_PRB2C_Mobile_Device
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - ✅ Found attribute PR_B2C_Mb_ATT_Policy_Type in category ATT_CAT_PRB2C_Mobile_Device
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - ✅ Extracted from selectedItem.value: Smart Protect Mobile for 1
+2025-11-14 21:08:44,507 - csv_exporter - INFO - ✅ Successfully extracted PR_B2C_Mb_ATT_Policy_Type from device_children[2]: Smart Protect Mobile for 1
+2025-11-14 21:08:44,507 - csv_exporter - INFO - Processing attribute: ATT_IMSI -> IMSI
+2025-11-14 21:08:44,507 - csv_exporter - INFO - Targeting asset types: ['specific_line_children']
+2025-11-14 21:08:44,507 - csv_exporter - INFO - Product filter: SIM Card
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - ✅ Found data for asset type: specific_line_children
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - === EXTRACTING ATTRIBUTE ATT_IMSI USING PROVEN APPROACH ===
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - ✅ Successfully parsed JSON
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - 📊 Top-level keys: ['ATT_CAT_SIM_CARD', 'ATT_CAT_PRB2C_Mobile', 'ATT_CAT_Tech_ATTR', 'SMD-001']
+2025-11-14 21:08:44,507 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_SIM_CARD
+2025-11-14 21:08:44,508 - csv_exporter - DEBUG - ✅ Found attribute ATT_IMSI in category ATT_CAT_SIM_CARD
+2025-11-14 21:08:44,508 - csv_exporter - DEBUG - ✅ Extracted from runtimeInfo.value: 313790001270979
+2025-11-14 21:08:44,508 - csv_exporter - INFO - ✅ Successfully extracted ATT_IMSI from specific_line_children[1]: 313790001270979
+2025-11-14 21:08:44,508 - csv_exporter - INFO - Processing attribute: PR_B2C_Mb_ATT_ICCID -> ICCID
+2025-11-14 21:08:44,508 - csv_exporter - INFO - Targeting asset types: ['specific_line_children']
+2025-11-14 21:08:44,508 - csv_exporter - INFO - Product filter: SIM Card
+2025-11-14 21:08:44,508 - csv_exporter - DEBUG - ✅ Found data for asset type: specific_line_children
+2025-11-14 21:08:44,508 - csv_exporter - DEBUG - === EXTRACTING ATTRIBUTE PR_B2C_Mb_ATT_ICCID USING PROVEN APPROACH ===
+2025-11-14 21:08:44,508 - csv_exporter - DEBUG - ✅ Successfully parsed JSON
+2025-11-14 21:08:44,509 - csv_exporter - DEBUG - 📊 Top-level keys: ['ATT_CAT_SIM_CARD', 'ATT_CAT_PRB2C_Mobile', 'ATT_CAT_Tech_ATTR', 'SMD-001']
+2025-11-14 21:08:44,509 - csv_exporter - DEBUG - 🔍 Searching in category: ATT_CAT_SIM_CARD
+2025-11-14 21:08:44,509 - csv_exporter - DEBUG - ✅ Found attribute PR_B2C_Mb_ATT_ICCID in category ATT_CAT_SIM_CARD
+2025-11-14 21:08:44,509 - csv_exporter - DEBUG - ✅ Extracted from runtimeInfo.value: 89017900010012709794
+2025-11-14 21:08:44,509 - csv_exporter - INFO - ✅ Successfully extracted PR_B2C_Mb_ATT_ICCID from specific_line_children[1]: 89017900010012709794
+2025-11-14 21:08:44,509 - csv_exporter - INFO - 📊 JSON attribute extraction completed: 5 attributes found
+2025-11-14 21:08:44,509 - csv_exporter - INFO - 🔍 Starting targeted field extraction...
+2025-11-14 21:08:44,509 - csv_exporter - INFO - Processing field extraction rule for: specific_line_children
+2025-11-14 21:08:44,509 - csv_exporter - INFO - Product filter: SIM Card
+2025-11-14 21:08:44,509 - csv_exporter - DEBUG - ✅ Extracted SerialNumber from specific_line_children[1]: 105089
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Processing field extraction rule for: device_details
+2025-11-14 21:08:44,510 - csv_exporter - DEBUG - ✅ Extracted PR_Generic_Reporting_String__c from device_details: Change Device - LCPR to LCPR|13402440785|1299.99|36|1299.99|0|36.11|1053779829779829|Samsung Galaxy S25 Ultra|Samsung Galaxy S25 Ultra|2025-11-08|active||||0||||1299.99||END
+2025-11-14 21:08:44,510 - csv_exporter - DEBUG - ✅ Extracted Contract_Term__c from device_details: 36 Month
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Processing field extraction rule for: device_children
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Product filter: Charger
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Processing field extraction rule for: device_children
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Product filter: Case
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Processing field extraction rule for: device_children
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Product filter: Device Protection
+2025-11-14 21:08:44,510 - csv_exporter - DEBUG - ✅ Extracted vlocity_cmt__RecurringCharge__c from device_children[2]: 15.0
+2025-11-14 21:08:44,510 - csv_exporter - DEBUG - ✅ Extracted PR_Original_OLI_ID__c from device_children[2]: 802Pl00000iDP7JIAW
+2025-11-14 21:08:44,510 - csv_exporter - INFO - Processing field extraction rule for: device_children
+2025-11-14 21:08:44,511 - csv_exporter - INFO - Product filter: Quick Upgrade Pro
+2025-11-14 21:08:44,511 - csv_exporter - DEBUG - ✅ Extracted vlocity_cmt__RecurringCharge__c from device_children[3]: 6.0
+2025-11-14 21:08:44,511 - csv_exporter - DEBUG - ✅ Extracted PR_Original_OLI_ID__c from device_children[3]: 802Pl00000iCjkpIAC
+2025-11-14 21:08:44,511 - csv_exporter - INFO - Processing field extraction rule for: specific_line_children
+2025-11-14 21:08:44,511 - csv_exporter - INFO - Product filter: Liberty International Passport
+2025-11-14 21:08:44,511 - csv_exporter - INFO - 📊 Field extraction completed: 7 fields found
+2025-11-14 21:08:44,512 - csv_exporter - INFO - ✓ Exported data for 13402440785 to msisdn_export.csv
